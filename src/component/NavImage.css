@@ -1,0 +1,6 @@
+.navImage_container{
+    display: flex;
+    align-items:stretch;
+    justify-content: space-between;
+    object-fit: contain;
+}

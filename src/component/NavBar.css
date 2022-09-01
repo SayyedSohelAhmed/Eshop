@@ -1,0 +1,17 @@
+.navbar_container{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+
+}
+.loginBtn_Container{
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid black; */
+    width: 15rem;
+}
+.loginBtn{
+    height: 3rem;
+}
