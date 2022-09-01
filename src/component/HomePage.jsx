@@ -10,6 +10,8 @@ import "./HomePage.css"
 import Carousel from "./Carousel"
 import NavImage from "../component/NavImage"
 
+// this is home page //
+
 const HomePage = () => {
     const searchItem = useSelector((state) => state.searchItem)
     const [data, setData] = useState([])
@@ -32,7 +34,7 @@ const HomePage = () => {
     }
     useEffect(() => {
         fetchApi();
-    },[])
+    }, [])
     const navigate = useNavigate()
 
     const goToDetailCard = (item) => {
@@ -40,19 +42,19 @@ const HomePage = () => {
     }
 
 
-    
-        const filterItem = (category) => {
-            let tempArr = data.filter(
-                (item) => {
-                    return (item.category === category)
-                })
-            console.log("ye temArr hai", tempArr)
-            setFilter(tempArr)
-        }
-    
-useEffect(()=>{
-setFilter(searchItem)
-},[searchItem])
+
+    const filterItem = (category) => {
+        let tempArr = data.filter(
+            (item) => {
+                return (item.category === category)
+            })
+        console.log("ye temArr hai", tempArr)
+        setFilter(tempArr)
+    }
+
+    useEffect(() => {
+        setFilter(searchItem)
+    }, [searchItem])
 
 
     return (
@@ -65,7 +67,7 @@ setFilter(searchItem)
 
             </div>
             <div>
-                
+
                 <Button onClick={() => setFilter(data)} >All Products </Button>
                 <Button onClick={() => filterItem("smartphones")} >Smart phones</Button>
                 <Button onClick={() => filterItem("laptops")}>Laptop </Button>
@@ -75,7 +77,7 @@ setFilter(searchItem)
                 <Button onClick={() => filterItem("home-decoration")} >home-decoration</Button>
                 <Button onClick={() => filterItem("furniture")} >furniture</Button>
                 <Button onClick={() => filterItem("Professional Wear")} >Professional Wear</Button>
-                
+
             </div>
 
 
