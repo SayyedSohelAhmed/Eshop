@@ -10,8 +10,6 @@ import "./HomePage.css"
 import Carousel from "./Carousel"
 import NavImage from "../component/NavImage"
 
-// this is home page //
-
 const HomePage = () => {
     const searchItem = useSelector((state) => state.searchItem)
     const [data, setData] = useState([])
@@ -67,17 +65,31 @@ const HomePage = () => {
 
             </div>
             <div>
+                <details> 
+                    <summary>Catergores</summary>
+                    <Button onClick={() => setFilter(data)} >All Products </Button>
+                    <Button onClick={() => filterItem("smartphones")} >Smart phones</Button>
+                    <Button onClick={() => filterItem("laptops")}>Laptop </Button>
+                    <Button onClick={() => filterItem("fragrances")} >Fragrances</Button>
+                    <Button onClick={() => filterItem("skincare")} >Skincare</Button>
+                    <Button onClick={() => filterItem("groceries")} >Groceries</Button>
+                    <Button onClick={() => filterItem("home-decoration")} >home-decoration</Button>
+                    <Button onClick={() => filterItem("furniture")} >Furniture</Button>
+                    <Button onClick={() => filterItem("tops")} > Tops </Button>
+                    <Button onClick={() => filterItem("womens-dresses")}> Womens-dresses</Button>
+                    <Button onClick={() => filterItem("womens-shoes")}> Womens-shoes</Button>
+                    <Button onClick={() => filterItem("mens-shirts")} > Mens-shirt</Button>
+                    <Button onClick={() => filterItem("mens-shoes")} > Mens-shoes</Button>
+                    <Button onClick={() => filterItem("mens-watches")} > Mens-watches</Button>
+                    <Button onClick={() => filterItem("womens-watches")} > Womens-watches</Button>
+                    <Button onClick={() => filterItem("womens-bags")} > Womens-bags </Button>
+                    <Button onClick={() => filterItem("womens-jewellery")} > Womens-jewellery </Button>
+                    <Button onClick={() => filterItem("sunglasses")} > Sunglasses </Button>
+                    <Button onClick={() => filterItem("automotive")} > Automotive </Button>
+                    <Button onClick={() => filterItem("motorcycle")} > Motorcycle </Button>
+                    <Button onClick={() => filterItem("lighting")} > Lighting </Button>
 
-                <Button onClick={() => setFilter(data)} >All Products </Button>
-                <Button onClick={() => filterItem("smartphones")} >Smart phones</Button>
-                <Button onClick={() => filterItem("laptops")}>Laptop </Button>
-                <Button onClick={() => filterItem("fragrances")} >fragrances</Button>
-                <Button onClick={() => filterItem("skincare")} >skincare</Button>
-                <Button onClick={() => filterItem("groceries")} >groceries</Button>
-                <Button onClick={() => filterItem("home-decoration")} >home-decoration</Button>
-                <Button onClick={() => filterItem("furniture")} >furniture</Button>
-                <Button onClick={() => filterItem("Professional Wear")} >Professional Wear</Button>
-
+                </details>
             </div>
 
 

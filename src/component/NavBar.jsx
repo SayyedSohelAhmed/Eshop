@@ -47,7 +47,7 @@ useEffect(() => {
 
             <div className="navbar_container">
                 <Link to="/" > <img src="https://thumbs.dreamstime.com/b/online-shop-logo-ecommerce-design-vector-187896714.jpg" alt="" width='120px' height='100px' /> </Link>
-                <TextField onChange={handleSearch} label='search items' />
+                <TextField style={{width : '40%'}} onChange={handleSearch} label='search items' />
                 <div className="loginBtn_Container">
                     <Button className="loginBtn" variant="contained" >Login</Button>
                     <Badge badgeContent={cartLength?.length}  color = "primary" >
