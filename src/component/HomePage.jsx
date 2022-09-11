@@ -5,7 +5,7 @@ import { useNavigate, useLocation, useParams } from "react-router-dom"
 import { BASE_URL } from "../Api/ApiProducts"
 import { manipulateCart } from "../redux/cart/cart-action"
 import { FILTER_CATEGORY, handleSearch as searchConstant } from "../redux/cart/cart-constant"
-import { Button, Rating } from "@mui/material";
+import { Button, Rating, Select, MenuItem } from "@mui/material";
 import "./HomePage.css"
 import Carousel from "./Carousel"
 import NavImage from "../component/NavImage"
@@ -17,6 +17,7 @@ const HomePage = () => {
     console.log("===>", filter)
     const dispatch = useDispatch()
     const [value, setValue] = useState(1)
+    const [course, setCourse] = useState('')
 
     const fetchApi = () => {
 
@@ -54,7 +55,10 @@ const HomePage = () => {
         setFilter(searchItem)
     }, [searchItem])
 
-
+    const updateValue = (e, item) => {
+        console.log(e.target.value)
+        setCourse(e.target.value)
+    }
     return (
         <>
             <div>
@@ -64,10 +68,39 @@ const HomePage = () => {
                 <Carousel />
 
             </div>
+            {/* this is section catergories section make by material UI */}
             <div>
-                <details> 
-                    <summary>Catergores</summary>
-                    <Button onClick={() => setFilter(data)} >All Products </Button>
+                <Select label="Select Course" onChange={(e) => updateValue(e)}
+                    value={course} displayEmpty style={{ width: "15%", margin: '1rem' }} fullWidth >
+                    <MenuItem value=''> Categories </MenuItem>
+                    <MenuItem><Button onClick={() => setFilter(data)} >All Products </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("smartphones")} >Smart phones</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("laptops")}>Laptop </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("fragrances")} >Fragrances</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("skincare")} >Skincare</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("groceries")} >Groceries</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("home-decoration")} >home-decoration</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("furniture")} >Furniture</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("tops")} > Tops </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("womens-dresses")}> Womens-dresses</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("womens-shoes")}> Womens-shoes</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("mens-shirts")} > Mens-shirt</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("mens-shoes")} > Mens-shoes</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("mens-watches")} > Mens-watches</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("womens-watches")} > Womens-watches</Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("womens-bags")} > Womens-bags </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("womens-jewellery")} > Womens-jewellery </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("sunglasses")} > Sunglasses </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("automotive")} > Automotive </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("motorcycle")} > Motorcycle </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("lighting")} > Lighting </Button></MenuItem>
+                </Select>
+            </div>
+
+            {/* this is categories section make by simple details and summary tage */}
+            {/* <details> */}
+            {/* <summary>Catergores</summary> */}
+            {/* <Button onClick={() => setFilter(data)} >All Products </Button>
                     <Button onClick={() => filterItem("smartphones")} >Smart phones</Button>
                     <Button onClick={() => filterItem("laptops")}>Laptop </Button>
                     <Button onClick={() => filterItem("fragrances")} >Fragrances</Button>
@@ -87,10 +120,8 @@ const HomePage = () => {
                     <Button onClick={() => filterItem("sunglasses")} > Sunglasses </Button>
                     <Button onClick={() => filterItem("automotive")} > Automotive </Button>
                     <Button onClick={() => filterItem("motorcycle")} > Motorcycle </Button>
-                    <Button onClick={() => filterItem("lighting")} > Lighting </Button>
-
-                </details>
-            </div>
+                    <Button onClick={() => filterItem("lighting")} > Lighting </Button> */}
+            {/* </details> */}
 
 
             <div className="main_containerOfCards" >
