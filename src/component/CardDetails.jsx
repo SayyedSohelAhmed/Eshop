@@ -5,9 +5,10 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { ADD_ITEM } from '../redux/cart/cart-constant'
 import { manipulateCart } from "../redux/cart/cart-action"
 import { useSelector } from "react-redux"
-import { Button } from '@mui/material'
+import { Button, Checkbox } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
+import { CheckBox, Favorite, FavoriteBorder } from '@mui/icons-material'
 const CardDetails = () => {
     const [isGoToCartVisible, setIsGoToCartVisible] = useState(false)
     ////
@@ -43,7 +44,7 @@ const CardDetails = () => {
     return (
         <>
             <h1> Card Details ... </h1>
-            
+
             {/* <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators" >
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -98,13 +99,15 @@ const CardDetails = () => {
                     <span class="visually-hidden">Next</span>
                 </button>
             </div> */}
-            
+
             <div className='cardDetails_container'>
                 <div>
                     <img className='cardDetails_img' src={mapCartItem.thumbnail} alt="" />
                 </div>
                 <div>
-                    <span className='favourite_icon' ><FavoriteBorderIcon /></span>
+                    <span className='favourite_icon' >
+                        <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} color={'secondary'} />
+                    </span>
                 </div>
                 <div className='cardDetails_title'>
                     <div className='share_icon'>
