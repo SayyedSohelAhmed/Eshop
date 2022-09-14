@@ -134,8 +134,8 @@ const HomePage = () => {
                                         <img className="card_img" src={item.thumbnail} alt="" />
                                     </div>
                                     <div>
-                                        <h2 className="heading">{item.title}</h2>
-                                        <p>{`$ ${item.price}`} <Rating
+                                        {/* <h5>{item.title}</h5> */}
+                                        <p className="rating" >{`$ ${item.price}`} <Rating
                                             name="size-small"
                                             value={value}
                                             max={1}
