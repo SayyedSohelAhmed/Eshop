@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { manipulateCart } from "../redux/cart/cart-action";
 import { REMOVE_ITEM, UPDATE_QTY, } from "../redux/cart/cart-constant"
 const AddToCart = () => {
-    const placeNavigate=useNavigate()
+    const placeNavigate = useNavigate()
     const received = useLocation()
     // const { state, index } = received
 
@@ -21,7 +21,7 @@ const AddToCart = () => {
     });
 
     const cartItems = useSelector((state) => state.cartItems);
-    console.log("cartItems===>",cartItems)
+    console.log("cartItems===>", cartItems)
     const dispatch = useDispatch();
 
 
@@ -37,7 +37,11 @@ const AddToCart = () => {
                     item.qty;
                 totalTemp = (totalTemp + item.price) * item.qty;
                 priceTemp = (totalTemp + discountTemp) * item.qty;
+                console.log("priceTemp", priceTemp)
+                console.log("discountTemp", discountTemp)
+                console.log("totalTemp", totalTemp)
             });
+
             setTotalCal((prevState) => ({
                 ...prevState,
                 price: Math.floor(priceTemp).toFixed(2),
@@ -65,51 +69,57 @@ const AddToCart = () => {
         }
         dispatch(manipulateCart(UPDATE_QTY, tempData));
     };
- const handlePlaceOrder=()=>{
+    const handlePlaceOrder = () => {
         placeNavigate('/userAddress')
- }
+    }
     return (
         <>
 
-            {cartItems.length ? (<div className="main_container">
+            {cartItems.length ? (<div className="main_container"  
+            data-aos="flip-left"
+            data-aos-easing="linear"
+            data-aos-duration="200">
                 <div className="addToCart_container">
                     {cartItems &&
                         cartItems.map((item, index) => (
                             <>
                                 <div className="cartItem_warper">
-                                    <img className="addToCart_img" src={item.thumbnail} alt="" />
-                                    <div>
+                                    <div className="addToCartImg_container">
+                                        <img className="addToCart_img" src={item.thumbnail} alt="" />
+                                    </div>
+                                    <div className="addToCartSide_container">
                                         <div className="midle_container">
                                             <h2>{item.title}</h2>
                                             <h1> {`$ ${item.price} Only/-`}</h1>
                                             <div className="removeBtn" >
-                                                <Button  className="" variant="text">save for later </Button>
-                                                <Button  onClick={()=>handleRemove(item)} className="" variant="text">remove</Button>
+                                                <Button className="" variant="text">save for later </Button>
+                                                <Button onClick={() => handleRemove(item)} className="" variant="text">remove</Button>
                                             </div>
-                                        </div>
-                                        <div className='qty_container' >
-                                            <AddIcon onClick={() => handleUpdateQty(index, true)} className='add' />
-                                            <span>
-                                                <input 
-                                                    className="input-qty"
-                                                    type="text"
-                                                    value={item.qty}
-                                                />
-                                            </span>
-                                            <RemoveIcon onClick={() => handleUpdateQty(index)} className='remove' />
+                                            <div className='qty_container' >
+                                                <AddIcon onClick={() => handleUpdateQty(index, true)} className='add' />
+                                                <span>
+                                                    <input
+                                                        className="input-qty"
+                                                        type="text"
+                                                        value={item.qty}
+                                                    />
+                                                </span>
+                                                <RemoveIcon onClick={() => handleUpdateQty(index)} className='remove' />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </>
                         ))}
-      
+
                 </div>
                 <div className="price_container" >
-                        <h3> price : .....{totalCal.price}</h3>
-                        <h3> discount price : .....{totalCal.discount} </h3>
-                        <h3> total price: ..... {totalCal.total}</h3>
-                        <Button onClick={handlePlaceOrder} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
-                    </div>
+                    <span><h2>PRICE DETAILS... </h2></span>
+                    <h4> price : .....{totalCal.price}</h4>
+                    <h4> discount price : .....{totalCal.discount} </h4>
+                    <h4> total price: ..... {totalCal.total}</h4>
+                    <Button onClick={handlePlaceOrder} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
+                </div>
             </div>) : (
                 <div> Cart is empty</div>
             )}

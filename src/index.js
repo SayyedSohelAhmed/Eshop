@@ -6,6 +6,9 @@ import { BrowserRouter} from "react-router-dom";
 import { Provider } from 'react-redux';
 import {createStore} from "redux";
 import reducer from './redux/cart/cart-reducer';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+AOS.init();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

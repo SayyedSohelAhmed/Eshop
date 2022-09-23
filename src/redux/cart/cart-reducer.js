@@ -3,9 +3,6 @@ import {
   EMPTY_CART,
   REMOVE_ITEM,
   UPDATE_QTY,
-  INCREASE_1,
-  INCREASE_2,
-  INCREASE_5,
   handleSearch,
   FILTER_CATEGORY,
   ORDER_LIST
@@ -14,7 +11,6 @@ import {
 const initialState = {
   cartItems: [],
   orderItem: [],
-  count: 0,
   searchItem: [],
   filterCategoryItem:[]
 };
@@ -41,18 +37,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           cartItems: [],
         };
-        case INCREASE_1:
-          return {
-            count: state.count + 1
-          }
-      case INCREASE_2:
-        return {
-          count: state.count + 2
-        }
-        case INCREASE_5:
-          return {
-            count: state.count + 5
-          }
+       
           case handleSearch:
             return {
               ...state,

@@ -12,8 +12,8 @@ const NavBar = () => {
     const [search, setSearch] = useState([])
     const cartLength = useSelector((state) => state.cartItems)
 
-useEffect(() => {
-        if (!search.length){
+    useEffect(() => {
+        if (!search.length) {
             setSearch(searchItemTemp)
         }
     }, [searchItemTemp])
@@ -29,9 +29,10 @@ useEffect(() => {
         } else {
             dispatch(manipulateCart(searchConstant, search))
         }
-    } 
+    }
     return (
         <>
+
             {/* { <div>
         <TextField className='navLinkItem'
                 lable='Search item' />
@@ -46,12 +47,12 @@ useEffect(() => {
                 </div>  */}
 
             <div className="navbar_container">
-                <Link to="/" > <img src="https://thumbs.dreamstime.com/b/online-shop-logo-ecommerce-design-vector-187896714.jpg" alt="" width='120px' height='100px' /> </Link>
-                <TextField style={{width : '40%'}} onChange={handleSearch} label='search items' />
+                <Link to="/" > <img src="https://i.pinimg.com/originals/ce/56/99/ce5699233cbc0f142250b520d967dff7.png" style={{ borderRadius: '50%' }} alt="" width='120px' height='100px' /> </Link>
+                <TextField style={{ width: '40%' }} onChange={handleSearch} label='search items' />
                 <div className="loginBtn_Container">
                     <Button className="loginBtn" variant="contained" >Login</Button>
-                    <Badge badgeContent={cartLength?.length}  color = "primary" >
-                        
+                    <Badge badgeContent={cartLength?.length} color="primary" >
+
                         <Link to='/addToCart'> <AddShoppingCartIcon /> </Link>
                     </Badge>
                 </div>

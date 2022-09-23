@@ -1,4 +1,4 @@
-import { Table, TableCell, TableHead, TextField, width, TableBody, Button } from "@mui/material"
+import { Table, TableCell, TableHead, TextField, width, TableBody, Button, Dialog, List, ListItemText, DialogTitle,  } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import react, { useState } from "react"
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { manipulateCart } from "../redux/cart/cart-action";
 import { ORDER_LIST } from "../redux/cart/cart-constant";
 const UserAddress = () => {
+
+    const [dialogBox, setDialogBox] = useState(false)
+
     const dispatch = useDispatch()
     const goToOrderHistory = useNavigate()
     const [list, setList] = useState([])
@@ -36,15 +39,23 @@ const UserAddress = () => {
             }
         ]
         dispatch(manipulateCart(ORDER_LIST, orderList))
-        goToOrderHistory('/orderHistory')
+        setDialogBox(true);
+
     }
     console.log(data)
     const handleAddress = () => {
         setList([...list, data])
-
+        console.log("===>",data)
+        console.log("===>",list)
+        
+    }
+    
+    
+    const dialogBoxClose = () => {
+        setDialogBox(false)
+        goToOrderHistory('/orderHistory')
     }
 
-     
     return (
         <>
             <div className='flex_container' >
@@ -75,13 +86,22 @@ const UserAddress = () => {
                             onChange={(e) => handleChange(e)}
                             label='address' /> <br />
 
-                            <Button variant='contained' onClick={() => { handleAddress(); goToOrderItem(); }} > ADD DELIVARY ADDRESS </Button>
+                        <Button variant='contained' onClick={() => { handleAddress(); goToOrderItem(); }} > ADD DELIVARY ADDRESS </Button>
 
-
+                        <Dialog close={dialogBox} open={dialogBox}    >
+                        <DialogTitle id="simple-dialog-title"> Congratulation your order successfull </DialogTitle>
+                        <List>
+                            {/* <ListItemText primary={`Name : ${fname} ${lname}`} />
+                            <ListItemText primary={`Email : ${email}`} />
+                            <ListItemText primary={`Password: ${password}`} />
+                            <ListItemText primary={`Phone Number : ${phone}`} /> */}
+                        </List>
+                        <Button onClick={dialogBoxClose} > Go To YOUR ORDER </Button>
+                    </Dialog>
                     </div>
                 </div>
             </div>
-            
+
         </>
     )
 }
