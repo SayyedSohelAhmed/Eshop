@@ -11,8 +11,14 @@ import NavImage from "../component/NavImage"
 import BannerCarousel from "./BannerCarousel"
 import filterItem from "../constant/filterFunction"
 import DropVertical from "./DropVertical"
+import ShortProduct from "./ShortedProducts"
 
 const HomePage = () => {
+
+    const [price, setPrice] = useState([])
+    const [lowPrice, setLowPrice] = useState([])
+
+
     const searchItem = useSelector((state) => state.searchItem)
     const [data, setData] = useState([])
     const [filter, setFilter] = useState([])
@@ -50,10 +56,29 @@ const HomePage = () => {
         setFilter(searchItem)
     }, [searchItem])
 
+    useEffect(() => {
+        filterData()
+    }, [data])
+
     const updateValue = (e, item) => {
         console.log(e.target.value)
         setCourse(e.target.value)
     }
+
+
+    // filter short product by value 400 to 800
+    const filterData = () => {
+        let price = data.filter((item) => {
+            return item.price > 400 && item.price < 800;
+        })
+        setPrice([...price]);
+
+        const lowPrice = data.filter((item) => {
+            return item.prcie >= 1 || item.price <= 100;
+        })
+        setLowPrice([...lowPrice])
+    }
+
     return (
         <>
             <div>
@@ -63,6 +88,9 @@ const HomePage = () => {
                 {/* <Carousel /> */}
                 <BannerCarousel />
                 {/* <DropVertical /> */}
+                <ShortProduct SectionTitle={"400 to 800"} dataForSection={price} />
+                <ShortProduct SectionTitle={"0 to 100"} dataForSection={lowPrice} />
+
             </div>
             {/* this is section catergories section make by material UI */}
             <div>
@@ -98,10 +126,10 @@ const HomePage = () => {
                     return (
                         <>
                             <div key={index} className="main_container" >
-                                
+
                                 <div className="card_container" onClick={() => goToDetailCard(item)} >
                                     <div className="img_container">
-                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="fade-up"/>
+                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="fade-up" />
                                     </div>
                                     <div>
                                         <h3 className="heading">{item.title}</h3>

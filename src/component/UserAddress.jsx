@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./UserAddress.css"
 import { useDispatch, useSelector } from "react-redux";
 import { manipulateCart } from "../redux/cart/cart-action";
-import { ORDER_LIST } from "../redux/cart/cart-constant";
+import { EMPTY_CART, ORDER_LIST } from "../redux/cart/cart-constant";
 const UserAddress = () => {
 
     const [dialogBox, setDialogBox] = useState(false)
@@ -40,7 +40,7 @@ const UserAddress = () => {
         ]
         dispatch(manipulateCart(ORDER_LIST, orderList))
         setDialogBox(true);
-
+        dispatch(manipulateCart(EMPTY_CART,newCartItem))
     }
     console.log(data)
     const handleAddress = () => {

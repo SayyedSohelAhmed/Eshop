@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { manipulateCart } from "../redux/cart/cart-action";
 import { REMOVE_ITEM, UPDATE_QTY, } from "../redux/cart/cart-constant"
 const AddToCart = () => {
+    const [removeItem, setRemoveItem] = useState()
     const placeNavigate = useNavigate()
     const received = useLocation()
     // const { state, index } = received
@@ -32,11 +33,12 @@ const AddToCart = () => {
             var discountTemp = 0;
 
             cartItems.map((item) => {
+                setRemoveItem(item)
                 discountTemp =
                     (discountTemp + (item.price * item.discountPercentage) / 100) *
                     item.qty;
                 totalTemp = (totalTemp + item.price) * item.qty;
-                priceTemp = (totalTemp + discountTemp) * item.qty;
+                priceTemp = (totalTemp + discountTemp);
                 console.log("priceTemp", priceTemp)
                 console.log("discountTemp", discountTemp)
                 console.log("totalTemp", totalTemp)
@@ -71,14 +73,15 @@ const AddToCart = () => {
     };
     const handlePlaceOrder = () => {
         placeNavigate('/userAddress')
+        // handleRemove(removeItem);
     }
     return (
         <>
 
-            {cartItems.length ? (<div className="main_container"  
-            data-aos="flip-left"
-            data-aos-easing="linear"
-            data-aos-duration="200">
+            {cartItems.length ? (<div className="main_container"
+                data-aos="flip-left"
+                data-aos-easing="linear"
+                data-aos-duration="200">
                 <div className="addToCart_container">
                     {cartItems &&
                         cartItems.map((item, index) => (
@@ -118,11 +121,12 @@ const AddToCart = () => {
                     <h4> price : .....{totalCal.price}</h4>
                     <h4> discount price : .....{totalCal.discount} </h4>
                     <h4> total price: ..... {totalCal.total}</h4>
-                    <Button onClick={handlePlaceOrder} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
-                </div>
+                    <Button onClick={()=>handlePlaceOrder()} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
+            </div>
             </div>) : (
-                <div> Cart is empty</div>
-            )}
+        <div> Cart is empty</div>
+    )
+}
         </>
     )
 }
