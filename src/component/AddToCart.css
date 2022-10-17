@@ -95,3 +95,15 @@
     width: 30vw;
     height: 40vh;   
 }
+.cart_empty_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gif{
+    width: 25vw;
+    height: 30vh;
+    
+}

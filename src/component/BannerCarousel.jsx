@@ -8,7 +8,7 @@ const BannerCarousel=()=>{
         { url: "https://rukminim1.flixcart.com/fk-p-flap/1688/280/image/21b20432e1c87059.jpg?q=50" },
         { url: "https://rukminim1.flixcart.com/fk-p-flap/1688/280/image/9e5af0a158ef19cf.jpeg?q=50" },
         { url: "https://rukminim1.flixcart.com/flap/1688/280/image/ff938f15fd1feb73.jpg?q=50" },
-        // { url: "images/6.jpg" },
+        { url: "https://rukminim1.flixcart.com/fk-p-flap/1688/280/image/9dcfbb9c71436640.jpg?q=50" },
         // { url: "images/7.jpg" },
       ];
       return(
@@ -16,7 +16,7 @@ const BannerCarousel=()=>{
           <SimpleImageSlider
             // style={{width:'100%'}}
             width={1350}
-            height={300}
+            height={250}
             images={images}
             showBullets={true}
             showNavs={true}

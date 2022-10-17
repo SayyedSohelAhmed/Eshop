@@ -1,10 +1,14 @@
  import react, { useState } from "react"
 import { Rating } from "@mui/material"
-const ShortProduct = ({ SectionTitle, dataForSection,}) => {
+import { useNavigate } from "react-router-dom"
+const ShortProduct = ({ SectionTitle, dataForSection}) => {
     
     const [value, setValue] = useState(1)
  
-    console.log(dataForSection,"dataForSection----------------------------")
+    const navigate = useNavigate()
+    const goToDetailCard = (item) => {
+        navigate("/cardDetail", { state: item })
+    }
 
     return (
         <>
@@ -13,10 +17,10 @@ const ShortProduct = ({ SectionTitle, dataForSection,}) => {
                 {dataForSection?.map((item, index) => {
                     return (
                         <>
-                            <div key={index} className="main_container" >
+                            <div onClick={()=>goToDetailCard(item)} key={index} className="main_container" >
                                 <div className="card_container" >
                                     <div className="img_container">
-                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="fade-up" />
+                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="zoom-in" />
                                     </div>
                                     <div>
                                         <h3 className="heading">{item.title}</h3>

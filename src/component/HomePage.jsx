@@ -3,6 +3,7 @@ import react, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useLocation, useParams } from "react-router-dom"
 import { BASE_URL } from "../Api/ApiProducts"
+
 import { manipulateCart } from "../redux/cart/cart-action"
 import { handleSearch as searchConstant } from "../redux/cart/cart-constant"
 import { Button, Rating, Select, MenuItem } from "@mui/material";
@@ -10,7 +11,6 @@ import "./HomePage.css"
 import NavImage from "../component/NavImage"
 import BannerCarousel from "./BannerCarousel"
 import filterItem from "../constant/filterFunction"
-import DropVertical from "./DropVertical"
 import ShortProduct from "./ShortedProducts"
 
 const HomePage = () => {
@@ -83,15 +83,23 @@ const HomePage = () => {
         <>
             <div>
                 <h1>home page</h1>
-                {/* this is carosel */}
                 {/* <NavImage /> */}
-                {/* <Carousel /> */}
                 <BannerCarousel />
-                {/* <DropVertical /> */}
-                <ShortProduct SectionTitle={"400 to 800"} dataForSection={price} />
+                <ShortProduct SectionTitle={"Best Price"} dataForSection={price} />
                 <ShortProduct SectionTitle={"0 to 100"} dataForSection={lowPrice} />
 
             </div>
+
+            <div className="category_buttons">
+                <Button variant='contained' onClick={() => setFilter(data)} >All Products </Button>
+                    <Button variant='contained' onClick={() => filterItem("smartphones", setFilter, data)} >Smart phones</Button>
+                    <Button variant='contained' onClick={() => filterItem("laptops", setFilter, data)}>Laptop </Button>
+                    <Button variant='contained' onClick={() => filterItem("fragrances", setFilter, data)} >Fragrances</Button>
+                    <Button variant='contained' onClick={() => filterItem("skincare", setFilter, data)} >Skincare</Button>
+                    <Button variant='contained' onClick={() => filterItem("groceries", setFilter, data)} >Groceries</Button>
+                    <Button variant='contained' onClick={() => filterItem("home-decoration", setFilter, data)} >home-decoration</Button>
+            </div>
+
             {/* this is section catergories section make by material UI */}
             <div>
                 <Select label="Select Course" onChange={(e) => updateValue(e)}
@@ -105,7 +113,7 @@ const HomePage = () => {
                     <MenuItem><Button onClick={() => filterItem("groceries", setFilter, data)} >Groceries</Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("home-decoration", setFilter, data)} >home-decoration</Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("furniture", setFilter, data)} >Furniture</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("tops", setFilter, data)} > Tops </Button></MenuItem>
+                    {/* <MenuItem><Button onClick={() => filterItem("tops", setFilter, data)} > Tops </Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("womens-dresses", setFilter, data)}> Womens-dresses</Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("womens-shoes", setFilter, data)}> Womens-shoes</Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("mens-shirts", setFilter, data)} > Mens-shirt</Button></MenuItem>
@@ -117,7 +125,7 @@ const HomePage = () => {
                     <MenuItem><Button onClick={() => filterItem("sunglasses", setFilter, data)} > Sunglasses </Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("automotive", setFilter, data)} > Automotive </Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("motorcycle", setFilter, data)} > Motorcycle </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("lighting", setFilter, data)} > Lighting </Button></MenuItem>
+                    <MenuItem><Button onClick={() => filterItem("lighting", setFilter, data)} > Lighting </Button></MenuItem> */}
                 </Select>
             </div>
 
@@ -129,7 +137,7 @@ const HomePage = () => {
 
                                 <div className="card_container" onClick={() => goToDetailCard(item)} >
                                     <div className="img_container">
-                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="fade-up" />
+                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="zoom-in"/>
                                     </div>
                                     <div>
                                         <h3 className="heading">{item.title}</h3>

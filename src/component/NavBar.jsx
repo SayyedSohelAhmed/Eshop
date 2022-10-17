@@ -6,6 +6,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { handleSearch as searchConstant } from "../redux/cart/cart-constant";
 import { manipulateCart } from "../redux/cart/cart-action";
+import Login from "./Login";
 const NavBar = () => {
     const searchItemTemp = useSelector((state) => state.searchItem)
     const dispatch = useDispatch()
@@ -50,9 +51,12 @@ const NavBar = () => {
                 <Link to="/" > <img src="https://i.pinimg.com/originals/ce/56/99/ce5699233cbc0f142250b520d967dff7.png" style={{ borderRadius: '50%' }} alt="" width='120px' height='100px' /> </Link>
                 <TextField style={{ width: '40%' }} onChange={handleSearch} label='search items' />
                 <div className="loginBtn_Container">
-                    <Button className="loginBtn" variant="contained" >Login</Button>
+                    
+                
+                    
+                    <Login/>
+                    <Link to="/orderHistory" ><Button variant="contained">My orders</Button></Link>
                     <Badge badgeContent={cartLength?.length} color="primary" >
-
                         <Link to='/addToCart'> <AddShoppingCartIcon /> </Link>
                     </Badge>
                 </div>

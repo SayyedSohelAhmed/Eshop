@@ -92,3 +92,8 @@
     font-weight: 500;
     color: #388e3c;
 }
+.category_buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}

@@ -9,11 +9,8 @@ import { manipulateCart } from "../redux/cart/cart-action";
 import { REMOVE_ITEM, UPDATE_QTY, } from "../redux/cart/cart-constant"
 const AddToCart = () => {
     const [removeItem, setRemoveItem] = useState()
-    const placeNavigate = useNavigate()
+    const navigate = useNavigate()
     const received = useLocation()
-    // const { state, index } = received
-
-    /////
     const [totalCal, setTotalCal] = useState({
         price: 0.0,
         discount: 0.0,
@@ -72,8 +69,11 @@ const AddToCart = () => {
         dispatch(manipulateCart(UPDATE_QTY, tempData));
     };
     const handlePlaceOrder = () => {
-        placeNavigate('/userAddress')
-        // handleRemove(removeItem);
+        navigate('/userAddress')
+    }
+
+    const goToHomePage=()=>{
+        navigate('/')
     }
     return (
         <>
@@ -124,7 +124,10 @@ const AddToCart = () => {
                     <Button onClick={()=>handlePlaceOrder()} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
             </div>
             </div>) : (
-        <div> Cart is empty</div>
+        <dive className="cart_empty_container" > 
+            <h1>YOUR CART IS EMPTY </h1>
+            <img onClick={goToHomePage} className="gif" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" alt=""/>
+        </dive>
     )
 }
         </>
