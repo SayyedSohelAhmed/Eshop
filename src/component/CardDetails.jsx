@@ -24,7 +24,7 @@ const CardDetails = () => {
 
     useEffect(() => {
 
-        console.log('HERE : ', received)
+        // console.log('HERE : ', received)
         if (cartItems.filter((item) => item.id === mapCartItem.id).length) {
             setIsGoToCartVisible(true);
         } else {
@@ -34,7 +34,7 @@ const CardDetails = () => {
 
     const handleAddToCart = (mapCartItem) => {
         dispatch(manipulateCart(ADD_ITEM, { ...mapCartItem, qty: 1 }))
-        navigate('/addToCart', { state: mapCartItem })
+        // navigate('/addToCart', { state: mapCartItem })
         
     }
     const handleGoToCart = (mapCartItem) => {

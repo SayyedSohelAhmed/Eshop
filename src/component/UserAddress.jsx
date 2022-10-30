@@ -26,10 +26,6 @@ const UserAddress = () => {
         setData({ ...data, [name]: value })
     }
     const newCartItem = useSelector((state) => state.cartItems)
-    console.log("newCartItem====>", newCartItem)
-
-
-
 
     const goToOrderItem = () => {
         const orderList = [
@@ -42,12 +38,8 @@ const UserAddress = () => {
         setDialogBox(true);
         dispatch(manipulateCart(EMPTY_CART,newCartItem))
     }
-    console.log(data)
     const handleAddress = () => {
-        setList([...list, data])
-        console.log("===>",data)
-        console.log("===>",list)
-        
+        setList([...list, data])        
     }
     
     
@@ -89,13 +81,7 @@ const UserAddress = () => {
                         <Button variant='contained' onClick={() => { handleAddress(); goToOrderItem(); }} > ADD DELIVARY ADDRESS </Button>
 
                         <Dialog close={dialogBox} open={dialogBox}    >
-                        <DialogTitle id="simple-dialog-title"> Congratulation your order successfull </DialogTitle>
-                        <List>
-                            {/* <ListItemText primary={`Name : ${fname} ${lname}`} />
-                            <ListItemText primary={`Email : ${email}`} />
-                            <ListItemText primary={`Password: ${password}`} />
-                            <ListItemText primary={`Phone Number : ${phone}`} /> */}
-                        </List>
+                        <DialogTitle id="simple-dialog-title">{`Congratulation ${data.fName} ${data.lName} your order successfull`}</DialogTitle>
                         <Button onClick={dialogBoxClose} > Go To YOUR ORDER </Button>
                     </Dialog>
                     </div>

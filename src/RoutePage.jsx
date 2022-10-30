@@ -7,6 +7,7 @@ import Login from './component/Login';
 import AddToCart from "./component/AddToCart";
 import UserAddress from "./component/UserAddress";
 import OrderHistory from "./component/OrderHistory";
+import Footer from "./component/Footer";
 const RoutePage=()=>{
     return(
         <>
@@ -20,6 +21,7 @@ const RoutePage=()=>{
                     <Route path="/userAddress" element={<UserAddress/>}/>
                     <Route path="/orderHistory" element={<OrderHistory/>} />
                 </Routes>
+                <Footer/>
             </div>
         </>
     )

@@ -9,17 +9,16 @@ import { manipulateCart } from "../redux/cart/cart-action";
 import { REMOVE_ITEM, UPDATE_QTY, } from "../redux/cart/cart-constant"
 const AddToCart = () => {
     const [removeItem, setRemoveItem] = useState()
-    const navigate = useNavigate()
-    const received = useLocation()
+    const navigate = useNavigate();
+    const received = useLocation();
     const [totalCal, setTotalCal] = useState({
         price: 0.0,
         discount: 0.0,
-        deliveryCharge: 4,
+        deliveryCharge: 4.00,
         total: 0.0,
     });
 
     const cartItems = useSelector((state) => state.cartItems);
-    console.log("cartItems===>", cartItems)
     const dispatch = useDispatch();
 
 
@@ -36,9 +35,6 @@ const AddToCart = () => {
                     item.qty;
                 totalTemp = (totalTemp + item.price) * item.qty;
                 priceTemp = (totalTemp + discountTemp);
-                console.log("priceTemp", priceTemp)
-                console.log("discountTemp", discountTemp)
-                console.log("totalTemp", totalTemp)
             });
 
             setTotalCal((prevState) => ({
@@ -72,7 +68,7 @@ const AddToCart = () => {
         navigate('/userAddress')
     }
 
-    const goToHomePage=()=>{
+    const goToHomePage = () => {
         navigate('/')
     }
     return (
@@ -117,19 +113,39 @@ const AddToCart = () => {
 
                 </div>
                 <div className="price_container" >
-                    <span><h2>PRICE DETAILS... </h2></span>
-                    <h4> price : .....{totalCal.price}</h4>
-                    <h4> discount price : .....{totalCal.discount} </h4>
-                    <h4> total price: ..... {totalCal.total}</h4>
-                    <Button onClick={()=>handlePlaceOrder()} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
-            </div>
+                    <span><h2>PRICE DETAILS</h2></span>
+                    <div>
+                        <div className="price">
+                            <h4> Price </h4>
+                            <h4>{totalCal.price}</h4>
+                        </div>
+
+                        <div className="price">
+                            <h4> Discount price </h4>
+                            <h4>{totalCal.discount}</h4>
+                        </div>
+
+                        <div className="price">
+                            <h4> Delivery charge</h4>
+                            <h4>{totalCal.deliveryCharge}</h4>
+                        </div>
+
+                        <div className="price">
+                            <h4> Total price</h4>
+                            <h4>{totalCal.total}</h4>
+                        </div>
+
+                    </div>
+
+                    <Button onClick={() => handlePlaceOrder()} variant='contained' style={{ backgroundColor: "orange" }}  > ORDER PLACED </Button>
+                </div>
             </div>) : (
-        <dive className="cart_empty_container" > 
-            <h1>YOUR CART IS EMPTY </h1>
-            <img onClick={goToHomePage} className="gif" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" alt=""/>
-        </dive>
-    )
-}
+                <dive className="cart_empty_container" >
+                    <h1>YOUR CART IS EMPTY </h1>
+                    <img onClick={goToHomePage} className="gif" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" alt="" />
+                </dive>
+            )
+            }
         </>
     )
 }

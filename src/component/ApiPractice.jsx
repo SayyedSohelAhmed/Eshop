@@ -27,10 +27,7 @@ function App1() {
     // useEffect(() => {
     //     fetchData();
     // }, [])
-    const handleBlur=(e)=>{
-        setData(e.target.value)
-    }
-    console.log("==>",data);
+    
     return (
         <>
             {/* <div>
@@ -55,8 +52,7 @@ function App1() {
                     })
                 }
             </div> */}
-            <h1>hello</h1>
-            <input onBlur={(e)=>handleBlur(e)}  type="text" />
+           
         </>
     )
 }

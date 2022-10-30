@@ -6,10 +6,11 @@
     flex-direction: column;
     width: 43vw;
     height: 70vh;
+    background-color: #fff;
 }
 .main_container{
     display: flex;
-    /* border : 1px solid black */
+    
 }
 .side_image{
     background-repeat: no-repeat;

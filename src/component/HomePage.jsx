@@ -3,9 +3,8 @@ import react, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useLocation, useParams } from "react-router-dom"
 import { BASE_URL } from "../Api/ApiProducts"
-
 import { manipulateCart } from "../redux/cart/cart-action"
-import { handleSearch as searchConstant } from "../redux/cart/cart-constant"
+import { handleSearch } from "../redux/cart/cart-constant"
 import { Button, Rating, Select, MenuItem } from "@mui/material";
 import "./HomePage.css"
 import NavImage from "../component/NavImage"
@@ -14,26 +13,20 @@ import filterItem from "../constant/filterFunction"
 import ShortProduct from "./ShortedProducts"
 
 const HomePage = () => {
-
     const [price, setPrice] = useState([])
     const [lowPrice, setLowPrice] = useState([])
-
-
-    const searchItem = useSelector((state) => state.searchItem)
     const [data, setData] = useState([])
     const [filter, setFilter] = useState([])
-    console.log("===>", filter)
-    const dispatch = useDispatch()
     const [value, setValue] = useState(1)
     const [course, setCourse] = useState('')
 
+    const searchItem = useSelector((state) => state.searchItem)
+    const dispatch = useDispatch()
     const fetchApi = () => {
 
-        // here we use promises .then()  //
         axios.get(BASE_URL).then((res) => {
-            console.log('RES : ', res)
             setData(res.data.products)
-            dispatch(manipulateCart(searchConstant, res.data.products))
+            dispatch(manipulateCart(handleSearch, res.data.products))
         })
             .catch((err) => {
                 console.log("error please enternet connection issue")
@@ -47,9 +40,6 @@ const HomePage = () => {
     const goToDetailCard = (item) => {
         navigate("/cardDetail", { state: item })
     }
-
-
-
 
 
     useEffect(() => {
@@ -85,19 +75,19 @@ const HomePage = () => {
                 <h1>home page</h1>
                 {/* <NavImage /> */}
                 <BannerCarousel />
-                <ShortProduct SectionTitle={"Best Price"} dataForSection={price} />
-                <ShortProduct SectionTitle={"0 to 100"} dataForSection={lowPrice} />
+                {/* <ShortProduct SectionTitle={"Best Price"} dataForSection={price} /> */}
+                {/* <ShortProduct SectionTitle={"0 to 100"} dataForSection={lowPrice} /> */}
 
             </div>
 
             <div className="category_buttons">
                 <Button variant='contained' onClick={() => setFilter(data)} >All Products </Button>
-                    <Button variant='contained' onClick={() => filterItem("smartphones", setFilter, data)} >Smart phones</Button>
-                    <Button variant='contained' onClick={() => filterItem("laptops", setFilter, data)}>Laptop </Button>
-                    <Button variant='contained' onClick={() => filterItem("fragrances", setFilter, data)} >Fragrances</Button>
-                    <Button variant='contained' onClick={() => filterItem("skincare", setFilter, data)} >Skincare</Button>
-                    <Button variant='contained' onClick={() => filterItem("groceries", setFilter, data)} >Groceries</Button>
-                    <Button variant='contained' onClick={() => filterItem("home-decoration", setFilter, data)} >home-decoration</Button>
+                <Button variant='contained' onClick={() => filterItem("smartphones", setFilter, data)} >Smart phones</Button>
+                <Button variant='contained' onClick={() => filterItem("laptops", setFilter, data)}>Laptop </Button>
+                <Button variant='contained' onClick={() => filterItem("fragrances", setFilter, data)} >Fragrances</Button>
+                <Button variant='contained' onClick={() => filterItem("skincare", setFilter, data)} >Skincare</Button>
+                <Button variant='contained' onClick={() => filterItem("groceries", setFilter, data)} >Groceries</Button>
+                <Button variant='contained' onClick={() => filterItem("home-decoration", setFilter, data)} >home-decoration</Button>
             </div>
 
             {/* this is section catergories section make by material UI */}
@@ -113,31 +103,17 @@ const HomePage = () => {
                     <MenuItem><Button onClick={() => filterItem("groceries", setFilter, data)} >Groceries</Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("home-decoration", setFilter, data)} >home-decoration</Button></MenuItem>
                     <MenuItem><Button onClick={() => filterItem("furniture", setFilter, data)} >Furniture</Button></MenuItem>
-                    {/* <MenuItem><Button onClick={() => filterItem("tops", setFilter, data)} > Tops </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("womens-dresses", setFilter, data)}> Womens-dresses</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("womens-shoes", setFilter, data)}> Womens-shoes</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("mens-shirts", setFilter, data)} > Mens-shirt</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("mens-shoes", setFilter, data)} > Mens-shoes</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("mens-watches", setFilter, data)} > Mens-watches</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("womens-watches", setFilter, data)} > Womens-watches</Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("womens-bags", setFilter, data)} > Womens-bags </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("womens-jewellery", setFilter, data)} > Womens-jewellery </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("sunglasses", setFilter, data)} > Sunglasses </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("automotive", setFilter, data)} > Automotive </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("motorcycle", setFilter, data)} > Motorcycle </Button></MenuItem>
-                    <MenuItem><Button onClick={() => filterItem("lighting", setFilter, data)} > Lighting </Button></MenuItem> */}
                 </Select>
             </div>
-
             <div className="main_containerOfCards" >
                 {filter?.map((item, index) => {
                     return (
-                        <>
-                            <div key={index} className="main_container" >
+                        <div key={index}>
+                            <div  className="main_container" >
 
                                 <div className="card_container" onClick={() => goToDetailCard(item)} >
                                     <div className="img_container">
-                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="zoom-in"/>
+                                        <img className="card_img" src={item.thumbnail} alt="" data-aos="zoom-in" />
                                     </div>
                                     <div>
                                         <h3 className="heading">{item.title}</h3>
@@ -157,7 +133,7 @@ const HomePage = () => {
                                     </div>
                                 </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })}
             </div>

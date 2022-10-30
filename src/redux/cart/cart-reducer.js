@@ -15,22 +15,23 @@ const initialState = {
   filterCategoryItem:[]
 };
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  const {type,payload}=action
+  switch (type) {
     case ADD_ITEM:
       // console.log("ye action.payload ==>",action.payload)
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: [...state.cartItems, payload],
       };
     case UPDATE_QTY:
       return {
         ...state,
-        cartItems: [...action.payload],
+        cartItems: [...payload],
       };
     case REMOVE_ITEM:
       return {
         ...state,
-        cartItems: state.cartItems.filter((item) => item.id !== action.payload),
+        cartItems: state.cartItems.filter((item) => item.id !== payload),
       };
       case EMPTY_CART:
         return {
@@ -41,18 +42,18 @@ const reducer = (state = initialState, action) => {
           case handleSearch:
             return {
               ...state,
-              searchItem: action.payload
+              searchItem: payload
             }
             case FILTER_CATEGORY:
               return{
                 ...state,
                 // filterCategoryItem:[state.filterCategoryItem.filter((item)=> item.category===action.payload)]
-                filterCategoryItem: action.payload
+                filterCategoryItem: payload
               }
               case ORDER_LIST:
                 return {
                   ...state,
-                  orderItem : [...state.orderItem , ...action.payload]
+                  orderItem : [...state.orderItem , ...payload]
                 }
             default:
               return state;

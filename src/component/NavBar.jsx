@@ -49,7 +49,7 @@ const NavBar = () => {
 
             <div className="navbar_container">
                 <Link to="/" > <img src="https://i.pinimg.com/originals/ce/56/99/ce5699233cbc0f142250b520d967dff7.png" style={{ borderRadius: '50%' }} alt="" width='120px' height='100px' /> </Link>
-                <TextField style={{ width: '40%' }} onChange={handleSearch} label='search items' />
+                <TextField style={{ width: '40%' }} onChange={(e)=>handleSearch(e)} label='search items' />
                 <div className="loginBtn_Container">
                     
                 
